@@ -1,6 +1,6 @@
-const Post = require("models/post");
-const { ObjectId } = require("mongoose").Types;
-const Joi = require("joi"); // 객체 검증 모듈
+const Post = require('models/post');
+const { ObjectId } = require('mongoose').Types;
+const Joi = require('joi'); // 객체 검증 모듈
 
 /**
  * objectID 검증 미들웨어
@@ -22,7 +22,7 @@ exports.checkObjectId = (ctx, next) => {
  * POST /api/posts
  * { title, body, tags }
  */
-exports.write = async ctx => {
+exports.write = async (ctx) => {
   // 객체가 가진 값들을 검증
   const schema = Joi.object().keys({
     title: Joi.string().required(),
@@ -67,7 +67,7 @@ exports.write = async ctx => {
  * : 페이지네이션, 내용길이 제한
  * GET /api/posts
  */
-exports.list = async ctx => {
+exports.list = async (ctx) => {
   // page가 주어지지 않아다면 1로 간주
   // query는 문자열 형태로 받아오므로 숫자로 변환
   const page = parseInt(ctx.query.page || 1, 10);
@@ -95,7 +95,7 @@ exports.list = async ctx => {
     ctx.body = posts.map(limitBodyLength);
     // 마지막 페이지 알려주기
     // ctx.set은 response header 설정
-    ctx.set("Last-Page", Math.ceil(postCount / 10));
+    ctx.set('Last-Page', Math.ceil(postCount / 10));
   } catch (error) {
     ctx.throw(error, 500);
   }
@@ -105,7 +105,7 @@ exports.list = async ctx => {
  * 포스트 조회
  * GET /api/posts/:id
  */
-exports.read = async ctx => {
+exports.read = async (ctx) => {
   const { id } = ctx.params;
   try {
     const post = await Post.findById(id).exec();
@@ -124,7 +124,7 @@ exports.read = async ctx => {
  * 포스트 삭제
  * DELETE /api/posts/:id
  */
-exports.remove = async ctx => {
+exports.remove = async (ctx) => {
   const { id } = ctx.params;
 
   try {
@@ -139,7 +139,7 @@ exports.remove = async ctx => {
  * 포스트 수정
  * PATCH /api/posts/:id
  */
-exports.update = async ctx => {
+exports.update = async (ctx) => {
   const { id } = ctx.params;
 
   try {

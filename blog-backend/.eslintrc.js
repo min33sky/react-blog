@@ -1,8 +1,10 @@
 module.exports = {
   extends: "airbnb-base",
-  setting: {
+  settings: {
     "import/resolver": {
-      node: { paths: [path.resolve("./src")] }
+      node: {
+        moduleDirectory: ["node_modules", "src/"]
+      }
     }
   },
   rules: {
