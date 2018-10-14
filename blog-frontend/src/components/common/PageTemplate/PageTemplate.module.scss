@@ -1,0 +1,8 @@
+@import "~styles/utils";
+
+.page-template {
+  main {
+    background: $oc-lime-0;
+    min-height: calc(100vh - 15rem); // 전체 높이에서 헤더 + 풋터 높이를 뺀다.
+  }
+}

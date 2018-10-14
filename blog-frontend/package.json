@@ -5,7 +5,9 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "immer": "^1.7.2",
+    "include-media": "^1.4.9",
     "node-sass": "^4.9.3",
+    "open-color": "^1.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
