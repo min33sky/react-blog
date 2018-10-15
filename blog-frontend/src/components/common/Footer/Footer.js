@@ -14,7 +14,9 @@ const Footer = () => {
       <Link to="/" className={cx('brand')}>
         MyBlog
       </Link>
-      <div className={cx('admin-login')}>관리자 로그인</div>
+      <div onClick={() => alert('준비중....')} className={cx('admin-login')}>
+        관리자 로그인
+      </div>
     </footer>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import Button from '../Button/Button';
 
 const cx = classNames.bind(styles);
 
@@ -16,8 +17,12 @@ const Header = () => {
           <Link to="/">MyBlog</Link>
         </div>
         <div className={cx('right')}>
-          {/* w조건에 따라 버튼 랜더링 */}
-          오른쪽
+          <Button theme="outline" to="/editor">
+            새 포스트
+          </Button>
+          <Button theme="gray">테스트1</Button>
+          <Button>테스트2</Button>
+          <Button disabled>테스트2</Button>
         </div>
       </div>
     </header>
