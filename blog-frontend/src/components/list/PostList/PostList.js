@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 /**
- * 포스트 컴포넌트
+ * 포스트 미리보기 컴포넌트
  */
 const PostItem = () => {
   return (
