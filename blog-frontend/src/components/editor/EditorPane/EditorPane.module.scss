@@ -6,7 +6,7 @@
   flex-direction: column;
 
   .title {
-    background: $oc-blue-7;
+    background: $oc-gray-8;
     border: none;
     outline: none;
     font-size: 1.5rem;
@@ -20,7 +20,16 @@
 
   .code-editor {
     flex: 1;
-    background: $oc-blue-9;
+    background: $oc-gray-9;
+    display: flex;
+    flex-direction: column; // .CodeMirror가 세로 영역을 전부 차지
+
+    // :global을 붙여줘서 css module 적용을 막는다.
+    :global .CodeMirror {
+      font-size: 1rem;
+      flex: 1;
+      font-family: "Nanum Gothic Coding";
+    }
   }
 
   .tags {
@@ -28,7 +37,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     height: 2rem;
-    background: $oc-blue-7;
+    background: $oc-gray-8;
     align-items: center;
 
     .description {

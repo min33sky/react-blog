@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "codemirror": "^5.40.2",
     "immer": "^1.7.2",
     "include-media": "^1.4.9",
+    "marked": "^0.5.1",
     "node-sass": "^4.9.3",
     "open-color": "^1.6.3",
+    "prismjs": "^1.15.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
