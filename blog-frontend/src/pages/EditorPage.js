@@ -1,8 +1,8 @@
 import React from 'react';
 import EditorTemplate from 'components/editor/EditorTemplate';
-import EditorHeader from 'components/editor/EditorHeader';
-import PreviewPane from 'components/editor/PreviewPane';
 import EditorPaneContainer from 'containers/editor/EditorPaneContainer';
+import PreviewPaneContainer from 'containers/editor/PreviewPaneContainer';
+import EditorHeaderContainer from 'containers/editor/EditorHeaderContainer';
 
 /**
  * 에디터 페이지
@@ -11,9 +11,9 @@ import EditorPaneContainer from 'containers/editor/EditorPaneContainer';
 const EditorPage = () => {
   return (
     <EditorTemplate
-      header={<EditorHeader />}
+      header={<EditorHeaderContainer />}
       editor={<EditorPaneContainer />}
-      preview={<PreviewPane />}
+      preview={<PreviewPaneContainer />}
     />
   );
 };
