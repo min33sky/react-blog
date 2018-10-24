@@ -1,6 +1,6 @@
 // @flow
 
-// 마크다운 에디터 상태
+// 마크다운 에디터 모듈
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { pender } from 'redux-pender';
