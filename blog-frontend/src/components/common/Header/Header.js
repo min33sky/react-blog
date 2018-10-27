@@ -2,14 +2,17 @@ import React from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
+import Button from 'components/common/Button/Button';
 
 const cx = classNames.bind(styles);
 
 /**
  * 헤더 컴포넌트
+ *
+ * @param {*} { onRemove, postId }
+ * @returns
  */
-const Header = () => {
+const Header = ({ onRemove, postId }) => {
   return (
     <header className={cx('header')}>
       <div className={cx('header-content')}>
@@ -17,12 +20,18 @@ const Header = () => {
           <Link to="/">MyBlog</Link>
         </div>
         <div className={cx('right')}>
-          <Button theme="outline" to="/editor">
+          {// flex를 유지하기 위해 배열 형태로 랜더링한다.
+            postId && [
+              <Button theme="outline" to={`/editor?id=${postId}`}>
+              수정
+              </Button>,
+              <Button theme="outline" onClick={onRemove}>
+              삭제
+              </Button>
+            ]}
+          <Button to={'/editor'} theme="outline">
             새 포스트
           </Button>
-          <Button theme="gray">테스트1</Button>
-          <Button>테스트2</Button>
-          <Button disabled>테스트2</Button>
         </div>
       </div>
     </header>

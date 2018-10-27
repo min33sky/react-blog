@@ -10,6 +10,7 @@
   - redux
   - react-router
   - Sass
+  - flow
 
 - Backend
 

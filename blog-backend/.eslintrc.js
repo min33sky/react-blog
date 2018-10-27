@@ -1,16 +1,17 @@
 module.exports = {
-  extends: "airbnb-base",
+  extends: 'airbnb-base',
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        moduleDirectory: ["node_modules", "src/"]
+        moduleDirectory: ['node_modules', 'src/']
       }
     }
   },
   rules: {
-    "no-unused-vars": 1,
-    "comma-dangle": 0,
-    "eol-last": 0,
-    "no-console": 0
+    'no-unused-vars': 1,
+    'comma-dangle': 0,
+    'eol-last': 0,
+    'no-console': 0,
+    'linebreak-style': 0
   }
 };
