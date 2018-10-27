@@ -22,10 +22,10 @@ const Header = ({ onRemove, postId }) => {
         <div className={cx('right')}>
           {// flex를 유지하기 위해 배열 형태로 랜더링한다.
             postId && [
-              <Button theme="outline" to={`/editor?id=${postId}`}>
+              <Button key="edit" theme="outline" to={`/editor?id=${postId}`}>
               수정
               </Button>,
-              <Button theme="outline" onClick={onRemove}>
+              <Button key="remove" theme="outline" onClick={onRemove}>
               삭제
               </Button>
             ]}

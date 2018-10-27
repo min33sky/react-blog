@@ -7,9 +7,10 @@ import { pender } from 'redux-pender';
 import * as api from 'lib/api';
 
 // action Types
-const INITIALIZE = 'editor/INITIALIZE';
-const CHANGE_INPUT = 'editor/CHANGE_INPUT';
-const WRITE_POST = 'editor/WRITE_POST';
+const INITIALIZE = 'editor/INITIALIZE'; // 초기화
+const CHANGE_INPUT = 'editor/CHANGE_INPUT'; // 인풋 변경
+const WRITE_POST = 'editor/WRITE_POST'; // 포스트 작성
+const GET_POST = 'editor/GET_POST'; // 수정할 포스트 가져오기
 
 // action Creators
 export const initialize = createAction(INITIALIZE);
@@ -18,6 +19,7 @@ export const changeInput = createAction(
   (payload: { name: string, value: string }) => payload
 );
 export const writePost = createAction(WRITE_POST, api.writePost);
+export const getPost = createAction(GET_POST, api.getPost);
 
 // initial state
 const initialState = {
@@ -47,6 +49,18 @@ export default handleActions(
         produce(state, draft => {
           const { _id } = action.payload.data;
           draft.postId = _id;
+        })
+    }),
+
+    // 기존 포스트 읽어오기 (포스트 수정 전용)
+    ...pender({
+      type: GET_POST,
+      onSuccess: (state, action) =>
+        produce(state, draft => {
+          const { title, body, tags } = action.payload.data;
+          draft.title = title;
+          draft.markdown = body;
+          draft.tags = tags.join(', '); // 배열을 문자열로 변환
         })
     })
   },

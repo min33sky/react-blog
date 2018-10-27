@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as editorActions from 'store/modules/editor';
 import EditorHeader from 'components/editor/EditorHeader';
+import queryString from 'query-string';
 
 type Props = {
   title: string,
@@ -22,8 +23,15 @@ type Props = {
  */
 class EditorHeaderContainer extends Component<Props> {
   componentDidMount() {
-    const { EditorActions } = this.props;
+    const { EditorActions, location } = this.props;
     EditorActions.initialize(); // 에디터를 초기화한다.
+
+    // 쿼리 파싱
+    const { id } = queryString.parse(location.search);
+    if (id) {
+      // id값이 존재하면 포스트 읽어오기
+      EditorActions.getPost(id);
+    }
   }
 
   /**
