@@ -66,11 +66,21 @@ exports.write = async (ctx) => {
  * 포스트 목록 가져오기
  * : 페이지네이션, 내용길이 제한
  * GET /api/posts
+ * @param {*} ctx
+ * @returns
  */
 exports.list = async (ctx) => {
   // page가 주어지지 않아다면 1로 간주
   // query는 문자열 형태로 받아오므로 숫자로 변환
   const page = parseInt(ctx.query.page || 1, 10);
+  const { tag } = ctx.query;
+
+  // DB에서 같은 tag값들을 가져온다.
+  const query = tag
+    ? {
+      tags: tag // tags 배열에서 tag를 가진 포스트를 찾는다
+    }
+    : {};
 
   // 잘못된 페이지가 주어진다면 오류
   if (page < 1) {
@@ -79,20 +89,23 @@ exports.list = async (ctx) => {
   }
 
   try {
-    const posts = await Post.find()
+    const posts = await Post.find(query)
       .sort({ _id: -1 }) // 역순 검색
       .limit(10) // 10개 제한
       .skip((page - 1) * 10)
       .lean() // JSON 형태로 조회
       .exec();
 
-    const postCount = await Post.count().exec(); // count() : document 개수
+    const postCount = await Post.count(query).exec(); // count() : document 개수
+
     // 200자 이상은 ...처리
     const limitBodyLength = post => ({
       ...post,
       body: post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`
     });
+
     ctx.body = posts.map(limitBodyLength);
+
     // 마지막 페이지 알려주기
     // ctx.set은 response header 설정
     ctx.set('Last-Page', Math.ceil(postCount / 10));
