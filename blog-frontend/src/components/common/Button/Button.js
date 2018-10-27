@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-// 전달받은 className, onClick 등 값들이 rest 안에 들어있다.
-// JSX에서 ...사용하면 내부에 있는 값들을 props로 넣어준다.
+/**
+ * 전달받은 className, onClick 등 값들이 rest 안에 들어있다.
+ * JSX에서 ...사용하면 내부에 있는 값들을 props로 넣어준다.
+ * @param {*} { children, ...rest }
+ */
 const Div = ({ children, ...rest }) => <div {...rest}>{children}</div>;
 
 /**
  * 버튼 컴포넌트
- * : 일반 버튼, 링크 버튼
+ * : 링크 버튼 & 일반 버튼
+ * @param {*} { children, to, onClick, disabled, theme = 'default' }
+ * @returns
  */
 const Button = ({ children, to, onClick, disabled, theme = 'default' }) => {
   // to 값이 존재하면 Link를 사용하고, 아니면 div를 사용한다.

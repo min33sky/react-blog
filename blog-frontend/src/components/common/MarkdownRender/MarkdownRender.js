@@ -49,7 +49,7 @@ class MarkdownRender extends Component<Props, MarkdownRenderState> {
   }
 
   /**
-   * 마크다운 렌더링 메서드
+   * 마크다운 렌더링하는 메서드
    *
    * @memberof MarkdownRender
    */
@@ -71,6 +71,22 @@ class MarkdownRender extends Component<Props, MarkdownRenderState> {
     });
   };
 
+  /**
+   * 포스트를 읽을 때도 하이라이트를 적용하기 위해서
+   *
+   * @memberof MarkdownRender
+   */
+  componentDidMount() {
+    Prism.highlightAll();
+  }
+
+  /**
+   * 마크다운이 업데이트 될 때마다 하이라이트 적용
+   *
+   * @param {*} prevProps
+   * @param {*} prevState
+   * @memberof MarkdownRender
+   */
   componentDidUpdate(prevProps, prevState) {
     // markdown 값이 변경되면 renderMarkdown을 호출한다.
     if (prevProps.markdown !== this.props.markdown) {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PostInfo from 'components/post/PostInfo';
 import PostBody from 'components/post/PostBody';
 import * as postActions from 'store/modules/post';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 /**
  * 포스트 컨테이너
@@ -12,6 +12,9 @@ import { bindActionCreators } from 'redux';
  * @extends {Component}
  */
 class PostContainer extends Component {
+  /**
+   * 포스트를 서버에서 가져온다
+   */
   initialize = async () => {
     const { PostActions, id } = this.props;
     try {
@@ -28,10 +31,10 @@ class PostContainer extends Component {
   render() {
     const { loading, post } = this.props;
 
-    if (loading) return null; // 로딩 중일 때는 아무것도 보여주지 않음
-
-    console.log('로딩: ', loading);
-    console.log('타이틀 : ', post.title);
+    /*
+      TODO: 로딩중에 로딩 스피너 설정하자
+    */
+    if (loading) return <div>Loading....</div>; // 로딩 중일 때는 아무것도 보여주지 않음
 
     const { title, body, publishedDate, tags } = post;
 
