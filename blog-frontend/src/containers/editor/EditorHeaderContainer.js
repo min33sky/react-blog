@@ -45,12 +45,19 @@ class EditorHeaderContainer extends Component<Props> {
   };
 
   /**
-   * 마크다운 에디터 작성
+   * 마크다운 에디터 작성 & 수정하기
    *
    * @memberof EditorHeaderContainer
    */
   handleSubmit = async () => {
-    const { title, markdown, tags, EditorActions, history } = this.props;
+    const {
+      title,
+      markdown,
+      tags,
+      EditorActions,
+      history,
+      location
+    } = this.props;
     const post = {
       title,
       body: markdown,
@@ -60,6 +67,15 @@ class EditorHeaderContainer extends Component<Props> {
     };
 
     try {
+      // id 값이 존재하면 수정하기 기능 수행
+      const { id } = queryString.parse(location.search);
+      if (id) {
+        await EditorActions.editPost({ id, ...post });
+        history.push(`/post/${id}`);
+        return;
+      }
+
+      // 포스트 작성 기능 수행
       await EditorActions.writePost(post);
       // 페이지를 이동시킨다. 주의: postId는 위에서 래퍼런스를 만들지말고
       // 현재의 postId값을 조회한다.
@@ -71,7 +87,14 @@ class EditorHeaderContainer extends Component<Props> {
 
   render() {
     const { handleGoBack, handleSubmit } = this;
-    return <EditorHeader onGoBack={handleGoBack} onSubmit={handleSubmit} />;
+    const { id } = queryString.parse(this.props.location.search);
+    return (
+      <EditorHeader
+        onGoBack={handleGoBack}
+        onSubmit={handleSubmit}
+        isEdit={id ? true : false}
+      />
+    );
   }
 }
 

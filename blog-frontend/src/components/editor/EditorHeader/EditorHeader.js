@@ -15,9 +15,10 @@ type Props = {
  * 에디터 헤더
  *
  * @param {Function} {onGoBack, onSubmit} 뒤로가기, 작성하기
+ * @param {boolean} isEdit 포스트 수정 모드
  * @returns
  */
-const EditorHeader = ({ onGoBack, onSubmit }: Props) => {
+const EditorHeader = ({ onGoBack, onSubmit, isEdit }: Props) => {
   return (
     <div className={cx('editor-header')}>
       <div className={cx('back')}>
@@ -27,7 +28,7 @@ const EditorHeader = ({ onGoBack, onSubmit }: Props) => {
       </div>
       <div className={cx('submit')}>
         <Button onClick={onSubmit} theme="outline">
-          작성하기
+          {isEdit ? '수정하기' : '작성하기'}
         </Button>
       </div>
     </div>
