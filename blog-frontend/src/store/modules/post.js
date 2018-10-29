@@ -6,9 +6,11 @@ import * as api from 'lib/api';
 
 // action type
 const GET_POST = 'post/GET_POST'; // 포스트 가져오기
+const REMOVE_POST = 'post/REMOVE_POST'; // 포스트 삭제하기
 
 // action creators
 export const getPost = createAction(GET_POST, api.getPost);
+export const removePost = createAction(REMOVE_POST, api.removePost);
 
 // initialState
 const initialState = {
